@@ -12,9 +12,9 @@ class Customers extends Component {
   }
 
   async componentDidMount() {
-    var data = await axios.get("/api/test");
-    console.log(data);
-    this.state.msg = data.msg
+    var res = await axios.get("/api/test");
+    console.log(res);
+    this.state.msg = res.data.msg
   }
 
   render() {
