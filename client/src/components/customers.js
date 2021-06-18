@@ -11,7 +11,7 @@ class Customers extends Component {
     };
   }
 
-  async componentDidMount() {
+  async componentWillMount() {
     var res = await axios.get("/api/test");
     console.log(res);
     this.state.msg = res.data.msg
