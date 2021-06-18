@@ -3,16 +3,16 @@ const cors = require('cors');
 
 const app = express();
 
-app.get('/api/customers', cors(), (req, res) => {
-  const customers = [
-    {id: 1, firstName: 'John', lastName: 'Doe'},
-    {id: 2, firstName: 'Brad', lastName: 'Traversy'},
-    {id: 3, firstName: 'Mary', lastName: 'Swanson'},
-  ];
+app.use(express.static("build"))
 
-  res.json(customers);
+app.get("/", (req, res) => {
+  res.sendFile("index.html")
+})
+app.get('/api/test', cors(), (req, res) => {
+  
+  res.json({msg:"react-express project 43"});
 });
 
-const port = 5000;
+const port = process.env.PORT || 5000;
 
 app.listen(port, () => `Server running on port ${port}`);

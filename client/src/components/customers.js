@@ -1,29 +1,27 @@
 import React, { Component } from 'react';
 import './customers.css';
+import axios from 'axios'
 
 class Customers extends Component {
   constructor() {
     super();
     this.state = {
-      customers: []
+      customers: [],
+      msg:""
     };
   }
 
-  componentDidMount() {
-    fetch('/api/customers')
-      .then(res => res.json())
-      .then(customers => this.setState({customers}, () => console.log('Customers fetched...', customers)));
+  async componentDidMount() {
+    var data = await axios.get("/api/test");
+    console.log(data);
+    this.state.msg = data.msg
   }
 
   render() {
     return (
       <div>
-        <h2>Customers</h2>
-        <ul>
-        {this.state.customers.map(customer => 
-          <li key={customer.id}>{customer.firstName} {customer.lastName}</li>
-        )}
-        </ul>
+        <h2>{this.state.msg}</h2>
+        
       </div>
     );
   }
